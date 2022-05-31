@@ -26,6 +26,7 @@ const ListCourseComponent = () => {
                 <th>Id</th>
                 <th>Title</th>
                 <th>Description</th>
+                <th>Actions</th>
             </thead>
             <tbody>
                 {
@@ -35,6 +36,9 @@ const ListCourseComponent = () => {
                             <td>{course.id}</td>
                             <td>{course.title}</td>
                             <td>{course.description}</td>
+                            <td>
+                                <Link className='btn btn-info' to={`/edit-course/${course.id}`}>Update</Link>
+                            </td>
                         </tr>
                     )
                 }

@@ -1,5 +1,5 @@
-import React, { useState } from 'react'
-import {Link, useNavigate} from 'react-router-dom'
+import React, { useEffect, useState } from 'react'
+import {Link, useNavigate, useParams} from 'react-router-dom'
 import CourseService from '../services/CourseService'
 
 const AddCourseComponent = () => {
@@ -7,6 +7,7 @@ const AddCourseComponent = () => {
     const [title,setTitle]=useState('')
     const [description, setDescription]= useState('')
     const navigate = useNavigate();
+    const {id} =useParams();
 
     const saveOrUpdateCourse=(e)=>{
         e.preventDefault();
@@ -23,6 +24,15 @@ const AddCourseComponent = () => {
         })
         console.log(course);
     }
+
+    useEffect(()=>{
+        CourseService.getCourseById(id).then((response)=>{
+            setTitle(response.data.title)
+            setDescription(response.data.description)
+        }).catch(error=>{
+            console.log(error)
+        })
+    })
 
   return (
     <div>

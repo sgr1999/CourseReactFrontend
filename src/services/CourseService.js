@@ -13,6 +13,11 @@ export class CourseService {
     createCourse(course){
         return axios.post(`${base_url}/addCourse`,course)
     }
+
+    getCourseById(id){
+        return axios.get(`${base_url}/getCourse/${id}`)
+    }
+
 }
 
 export default new CourseService();
